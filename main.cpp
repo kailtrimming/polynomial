@@ -1,34 +1,31 @@
-#include<iostream>
-
-#include "CRectangle.h"
+#include "CPolynomial.h"
 
 int main() {
-
-	float area;
-	float a0,a1,a2,a3;
 	
-	Quadrilateral* A; //polimorfismo, anche se quadrilateral e rectangle sono due cose diverse
+	double cf1[7]={2.0,1.5,0,0,0,0,-1.0};
+	double cf2[4]={-2.0,1.5,2.5,3.5};
 	
-	Rectangle r1;
-	Rectangle r2(1,7);
 	
-	A= &r1;
+	Polynomial p0;
+	Polynomial p1(cf1,7);
+	Polynomial p2(cf2,4);
+	Polynomial p3=p1;
+		
+	p0.Dump();
+	p1.Dump();
+	p2.Dump();
+	p3.Dump();
 	
-	A->Dump(); //viene chiamata la dump del quadrilatero 
-	r1.Dump(); //dump dello oggetto rettangolo
+	p0=p2;
+	p0.Dump();
 	
-	area=r1.GetArea();
-	cout << "rettangolo 1 - area: " << area << endl;
+	p3 = p0 + p2;
+	p3.Dump();
 	
-	r1=r2;
+	if (p0==p1)
+		cout << "uguali" << endl;
 	
-	area=r1.GetArea();
-	cout << "rettangolo 1 - area: " << area << endl;
+	p1.Reset(); 
+	p1.Dump();
 	
-	A->Dump();
-//	A->SetWidth(11,4);
-	r1.GetAngles(a0,a1,a2,a3);
-
-	return 0;
-	
-}	
+}
